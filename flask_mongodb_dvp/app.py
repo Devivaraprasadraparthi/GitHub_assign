@@ -1,0 +1,59 @@
+from flask import Flask, render_template, redirect, url_for
+from flask import request, jsonify
+from datetime import datetime
+from dotenv import load_dotenv
+import os
+import pymongo
+
+load_dotenv()  # Load environment variables from .env file
+MONGO_URI = os.getenv('MONGO_URI')  # Get the MongoDB URI from environment variables
+
+client = pymongo.MongoClient(MONGO_URI)
+db = client.test
+collection = db['flask_mongodb_dvp']
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    day_of_week = [datetime.today().strftime("%A")]  # Placeholder for the current day of the week
+    current_time = datetime.now().strftime("%I:%M %p")  # Get current time in 12-hour format
+
+    return render_template('index.html', day_of_week=day_of_week, current_time=current_time)
+
+
+@app.route("/login", methods=["POST"])
+def login():
+    form_data = dict(request.form)
+
+    result = collection.insert_one(form_data)
+    return "Data submitted successfully!"
+    # return redirect(url_for('success', username=form_data.get("username"), password=form_data.get("password")))
+
+    # return jsonify({
+    #    "message": "Data submitted successfully!",
+    #     "id": str(result.inserted_id),
+    #     "data":{
+    #         "username": form_data.get("username"),
+    #         "password": form_data.get("password")
+    #     }
+    # # }), 201
+
+# @app.route("/users", methods=["GET"])
+# def get_users():
+
+#     users = []
+
+#     for user in collection.find():
+
+#         users.append({
+#             "id": str(user["_id"]),
+#             "username": user.get("username"),
+#             "password": user.get("password")
+#         })
+
+#     return jsonify(users), 200
+
+if __name__ == '__main__':
+
+    app.run(debug=True)
+    

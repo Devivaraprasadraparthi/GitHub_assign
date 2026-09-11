@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta subject="Login Page">
+    <title>login page</title>
+</head>
+
+<body>
+    <h1>Welcome to the Login Page</h1>
+    <p>Today is {{ day_of_week }} and the time is {{ current_time }}.</p>
+    <p>Enter your details to log in.</p>
+    <div style="text-align: center;">
+        <div style="margin-bottom: 20px;">
+            
+        </div> 
+        <form action="/login" method="post">
+        <!-- <form action="/users" method="POST"></form>         -->
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username"><br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password"><br><br>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            text-align: center;
+            font-size: 25px;
+            color: #080707;
+        }
+    </style>
+</body>
+
+</html>

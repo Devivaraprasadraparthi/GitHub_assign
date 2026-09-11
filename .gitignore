@@ -1,0 +1,5 @@
+flask_mongodb_dvp/venv/
+.env
+flask_mongodb_dvp/flask mongodb .pdf
+__pycache__/
+*.pyc

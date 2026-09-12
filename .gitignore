@@ -3,3 +3,4 @@ flask_mongodb_dvp/.env
 flask_mongodb_dvp/flask mongodb .pdf
 __pycache__/
 *.pyc
+.env

@@ -21,6 +21,7 @@ def home():
     return render_template('index.html', day_of_week=day_of_week, current_time=current_time)
 
 
+<<<<<<< HEAD
 @app.route("/login", methods=["POST"])
 def login():
     form_data = dict(request.form)
@@ -52,6 +53,44 @@ def login():
 #         })
 
 #     return jsonify(users), 200
+=======
+@app.route("/api/users", methods=["GET"])
+def get_users():
+    try:
+        users = list(collection.find())
+        for user in users:
+            user["_id"] = str(user["_id"])
+        return jsonify(users), 200
+    except Exception as error:
+        return jsonify({
+            "error": str(error)
+        }), 500
+
+
+@app.route("/login", methods=["POST"])
+def login():
+    try:
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        if not username or not password:
+            return render_template("index.html", error="Username and password are required.")
+
+        collection.insert_one({
+            "username": username,
+            "password": password
+        })
+
+        return redirect(url_for("success"))
+
+    except Exception as error:
+        return render_template("index.html", error=f"Error: {error}")
+
+
+@app.route("/success")
+def success():
+    return render_template("success.html")
+>>>>>>> dvp
 
 if __name__ == '__main__':
 

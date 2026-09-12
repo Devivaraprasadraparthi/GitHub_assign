@@ -21,39 +21,6 @@ def home():
     return render_template('index.html', day_of_week=day_of_week, current_time=current_time)
 
 
-<<<<<<< HEAD
-@app.route("/login", methods=["POST"])
-def login():
-    form_data = dict(request.form)
-
-    result = collection.insert_one(form_data)
-    return "Data submitted successfully!"
-    # return redirect(url_for('success', username=form_data.get("username"), password=form_data.get("password")))
-
-    # return jsonify({
-    #    "message": "Data submitted successfully!",
-    #     "id": str(result.inserted_id),
-    #     "data":{
-    #         "username": form_data.get("username"),
-    #         "password": form_data.get("password")
-    #     }
-    # # }), 201
-
-# @app.route("/users", methods=["GET"])
-# def get_users():
-
-#     users = []
-
-#     for user in collection.find():
-
-#         users.append({
-#             "id": str(user["_id"]),
-#             "username": user.get("username"),
-#             "password": user.get("password")
-#         })
-
-#     return jsonify(users), 200
-=======
 @app.route("/api/users", methods=["GET"])
 def get_users():
     try:
@@ -90,7 +57,6 @@ def login():
 @app.route("/success")
 def success():
     return render_template("success.html")
->>>>>>> dvp
 
 if __name__ == '__main__':
 

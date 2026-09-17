@@ -1,12 +1,16 @@
 from flask import Flask, render_template, request, jsonify
 from pymongo import MongoClient
 import os
+import pymongo
+
+MONGO_URI = os.getenv('MONGO_URI')
 
 # MongoDB Connection
-client = MongoClient(os.getenv("MONGO_URI", "mongodb://localhost:27017/"))
+client = MongoClient(MONGO_URI) if MONGO_URI else MongoClient('mongodb://localhost:27017')
 db = client["todo_db"]
 todos_collection = db["todos"]
 
+app = Flask(__name__)
 
 
 @app.route('/todo')
@@ -37,3 +41,8 @@ def submit_todo_item():
         "message": "Item stored successfully",
         "id": str(result.inserted_id)
     }), 201
+
+
+if __name__ == '__main__':
+
+    app.run(debug=True)

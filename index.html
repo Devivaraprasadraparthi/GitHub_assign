@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do Page</title>
+</head>
+<body>
+    <h2>Add To-Do Item</h2>
+    <form action="/submittodoitem" method="POST">
+        <label for="itemName">Item Name:</label><br>
+        <input type="text" id="itemName" name="itemName" required><br><br>
+        
+        <label for="itemDescription">Item Description:</label><br>
+        <textarea id="itemDescription" name="itemDescription" required></textarea><br><br>
+        
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

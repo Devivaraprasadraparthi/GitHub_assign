@@ -1,12 +1,14 @@
 from flask import Flask, render_template, request, jsonify
 from pymongo import MongoClient
+from dotenv import load_dotenv
 import os
 import pymongo
 
 MONGO_URI = os.getenv('MONGO_URI')
 
 # MongoDB Connection
-client = MongoClient(MONGO_URI) if MONGO_URI else MongoClient('mongodb://localhost:27017')
+client = pymongo.MongoClient('MONGO_URI')
+client = MongoClient
 db = client["todo_db"]
 todos_collection = db["todos"]
 
